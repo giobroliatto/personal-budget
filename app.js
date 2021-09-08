@@ -166,12 +166,12 @@ function registerExpense() {
     $('#engraveRegister').modal('show')
 
     // zerando campos
-    /*     year.value = ''
+    year.value = ''
     month.value = ''
     day.value = ''
     type.value = ''
     description.value = ''
-    cost.value = '' */
+    cost.value = ''
   } else if (expense.dataValidation() === 1) {
     // erro (campos em barnco)
     document.getElementById('modal-title').innerHTML = 'Error'
