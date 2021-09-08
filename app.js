@@ -228,7 +228,9 @@ function loadExpenses() {
     let row = expensesList.insertRow()
 
     // criando as colunas <td>
-    row.insertCell(0).innerHTML = `${d.day}/${d.month}/${d.year}`
+    row.insertCell(0).innerHTML = `${fixZero(parseInt(d.day))}/${fixZero(
+      parseInt(d.month)
+    )}/${d.year}`
     switch (parseInt(d.type)) {
       case 1:
         d.type = 'Food'
@@ -247,9 +249,13 @@ function loadExpenses() {
         break
     }
 
+    var formatter = new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    })
     row.insertCell(1).innerHTML = d.type
     row.insertCell(2).innerHTML = d.description
-    row.insertCell(3).innerHTML = d.cost
+    row.insertCell(3).innerHTML = formatter.format(d.cost)
 
     // botão de exclusão
     let btn = document.createElement('button')
@@ -302,7 +308,9 @@ function searchExpense() {
     let row = expensesList.insertRow()
 
     // criando as colunas <td>
-    row.insertCell(0).innerHTML = `${d.day}/${d.month}/${d.year}`
+    row.insertCell(0).innerHTML = `${fixZero(parseInt(d.day))}/${fixZero(
+      parseInt(d.month)
+    )}/${d.year}`
 
     switch (parseInt(d.type)) {
       case 1:
@@ -322,9 +330,13 @@ function searchExpense() {
         break
     }
 
+    var formatter = new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    })
     row.insertCell(1).innerHTML = d.type
     row.insertCell(2).innerHTML = d.description
-    row.insertCell(3).innerHTML = d.cost
+    row.insertCell(3).innerHTML = formatter.format(d.cost)
 
     // botão de exclusão
     let btn = document.createElement('button')
@@ -357,6 +369,15 @@ function searchExpense() {
 
 function reloadPage() {
   window.location.reload()
+}
+
+// ajustar o zero nas datas menores que 10
+function fixZero(date) {
+  if (date < 10) {
+    return '0' + date
+  } else {
+    return date
+  }
 }
 
 /* // preparando o local storage para armazenar os registros de despesas (aqui o índice é fixo, ou seja, será alterado toda vez que for adicionado. é preciso criar um índice dinâmico)
