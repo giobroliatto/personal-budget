@@ -218,7 +218,15 @@ function loadExpenses() {
     btn.onclick = function () {
       let id = this.id.replace('expense-id-', '')
       db.remove(id)
-      window.location.reload()
+
+      document.getElementById('modal-title').innerHTML = 'Removed'
+      document.getElementById('modal-title-div').className =
+        'modal-header text-primary'
+      document.getElementById('modal-content').innerHTML =
+        'Expense successfully removed'
+      document.getElementById('modal-btn').innerHTML = 'Go back'
+      document.getElementById('modal-btn').className = 'btn btn-primary'
+      $('#engraveRegister').modal('show')
     }
     row.insertCell(4).append(btn)
     console.log(d)
@@ -281,11 +289,22 @@ function searchExpense() {
     btn.onclick = function () {
       let id = this.id.replace('expense-id-', '')
       db.remove(id)
-      window.location.reload()
+
+      document.getElementById('modal-title').innerHTML = 'Removed'
+      document.getElementById('modal-title-div').className =
+        'modal-header text-primary'
+      document.getElementById('modal-content').innerHTML =
+        'Expense successfully removed'
+      document.getElementById('modal-btn').innerHTML = 'Go back'
+      document.getElementById('modal-btn').className = 'btn btn-primary'
+      $('#engraveRegister').modal('show')
     }
     row.insertCell(4).append(btn)
-    console.log(d)
   })
+}
+
+function reloadPage() {
+  window.location.reload()
 }
 
 /* // preparando o local storage para armazenar os registros de despesas (aqui o índice é fixo, ou seja, será alterado toda vez que for adicionado. é preciso criar um índice dinâmico)
