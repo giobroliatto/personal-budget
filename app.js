@@ -229,7 +229,6 @@ function loadExpenses() {
       $('#engraveRegister').modal('show')
     }
     row.insertCell(4).append(btn)
-    console.log(d)
   })
 }
 
