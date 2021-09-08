@@ -217,15 +217,20 @@ function loadExpenses() {
     btn.id = `expense-id-${d.id}`
     btn.onclick = function () {
       let id = this.id.replace('expense-id-', '')
-      db.remove(id)
 
-      document.getElementById('modal-title').innerHTML = 'Removed'
+      document.getElementById('modal-title').innerHTML = 'Attention!'
       document.getElementById('modal-title-div').className =
-        'modal-header text-primary'
+        'modal-header text-dark'
       document.getElementById('modal-content').innerHTML =
-        'Expense successfully removed'
-      document.getElementById('modal-btn').innerHTML = 'Go back'
-      document.getElementById('modal-btn').className = 'btn btn-primary'
+        'Are you sure you want to remove this register?'
+      document.getElementById('modal-btn-cancel').innerHTML = 'Cancel'
+      document.getElementById('modal-btn-cancel').className = 'btn btn-dark'
+      document.getElementById('modal-btn-confirm').innerHTML = 'Yes, delete'
+      document.getElementById('modal-btn-confirm').className = 'btn btn-danger'
+      document.getElementById('modal-btn-confirm').onclick = function () {
+        db.remove(id)
+        searchExpense()
+      }
       $('#engraveRegister').modal('show')
     }
     row.insertCell(4).append(btn)
@@ -287,15 +292,21 @@ function searchExpense() {
     btn.id = `expense-id-${d.id}`
     btn.onclick = function () {
       let id = this.id.replace('expense-id-', '')
-      db.remove(id)
 
-      document.getElementById('modal-title').innerHTML = 'Removed'
+      document.getElementById('modal-title').innerHTML = 'Attention!'
       document.getElementById('modal-title-div').className =
-        'modal-header text-primary'
+        'modal-header text-dark'
       document.getElementById('modal-content').innerHTML =
-        'Expense successfully removed'
-      document.getElementById('modal-btn').innerHTML = 'Go back'
-      document.getElementById('modal-btn').className = 'btn btn-primary'
+        'Are you sure you want to remove this register?'
+      document.getElementById('modal-btn-cancel').innerHTML = 'Cancel'
+      document.getElementById('modal-btn-cancel').className = 'btn btn-dark'
+      document.getElementById('modal-btn-confirm').innerHTML = 'Yes, delete'
+      document.getElementById('modal-btn-confirm').className = 'btn btn-danger'
+      document.getElementById('modal-btn-confirm').onclick = function () {
+        db.remove(id)
+        searchExpense()
+      }
+
       $('#engraveRegister').modal('show')
     }
     row.insertCell(4).append(btn)
@@ -313,3 +324,42 @@ function engrave(d) {
 }
 
 */
+
+/*    // modelo da entidade/objeto -> classe
+      // entidade -> objeto abstraído do mundo real
+      // cada entidade possui uma identidade para ser tratado de forma independente
+
+      // modelo da entidade - classe
+      class ContaBancaria {
+        // método construtor: modelo/classe não são o objeto, precisam passar pelo processo chamado "instância", onde nesse processo ocorre a construção do objeto
+        constructor() {
+          // características da entidade (tb chamadas de atributos)
+          this.agencia = 1075
+          this.numeroConta = 8351125
+          this.saldo = 50
+          this.limite = 450
+        }
+
+        // ações da entidade (tb chamado de métodos)
+        depositar(valorDeposito) {
+          this.saldo += valorDeposito
+        }
+
+        sacar(valorSaque) {
+          this.saldo -= valorSaque
+        }
+
+        consultarSaldo() {
+          return this.saldo
+        }
+      }
+
+      // criar entidade (com identidades) com base no modelo
+      let x = new ContaBancaria() // o operador "new" indica ao JS que deseja-se transformar um modelo em um objeto, ou seja, transformar a classe ContaBancária em um objeto que pode ser utilziado no código. a partir dessa instância, pode-se recuperar os atributos e métodos do modelo (agora objeto)
+      let y = new ContaBancaria()
+
+      console.log(x.consultarSaldo())
+      x.depositar(150)
+      console.log(x.consultarSaldo())
+      x.sacar(200)
+      console.log(x.consultarSaldo()) */

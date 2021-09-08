@@ -39,7 +39,7 @@
   </head>
 
   <body onload="loadExpenses()">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
       <div class="container">
         <a class="navbar-brand" href="#">
           <img src="logo.png" width="50" height="35" alt="Personal budget" />
@@ -86,7 +86,7 @@
           </select>
         </div>
 
-        <div class="col-md-2">
+        <div class="col-md-3">
           <select class="form-control" id="month">
             <option value="">Month</option>
             <option value="1">January</option>
@@ -108,7 +108,7 @@
           <input type="text" class="form-control" placeholder="Day" id="day" />
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-5">
           <select class="form-control" id="type">
             <option value="">Type</option>
             <option value="1">Food</option>
@@ -140,11 +140,7 @@
         </div>
 
         <div class="col-md-2 d-flex justify-content-end">
-          <button
-            type="button"
-            class="btn btn-primary"
-            onclick="searchExpense()"
-          >
+          <button type="button" class="btn btn-dark" onclick="searchExpense()">
             <i class="fas fa-search"></i>
           </button>
         </div>
@@ -195,8 +191,12 @@
             <button
               type="button"
               data-dismiss="modal"
-              id="modal-btn"
-              onclick="reloadPage()"
+              id="modal-btn-confirm"
+            ></button>
+            <button
+              type="button"
+              data-dismiss="modal"
+              id="modal-btn-cancel"
             ></button>
           </div>
         </div>
