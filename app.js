@@ -8,14 +8,38 @@ class Expense {
     this.cost = cost
   }
 
-  // verificando se há campos em branco
+  // verificando se todos campos são válidos
   dataValidation() {
     for (let i in this) {
       if (this[i] == undefined || this[i] == '' || this[i] == null) {
-        return false
+        return 1
+      } else if (
+        (parseInt(this.month) === 1 && parseInt(Math.round(this.day)) > 31) ||
+        (parseInt(this.month) === 3 && parseInt(Math.round(this.day)) > 31) ||
+        (parseInt(this.month) === 5 && parseInt(Math.round(this.day)) > 31) ||
+        (parseInt(this.month) === 7 && parseInt(Math.round(this.day)) > 31) ||
+        (parseInt(this.month) === 8 && parseInt(Math.round(this.day)) > 31) ||
+        (parseInt(this.month) === 10 && parseInt(Math.round(this.day)) > 31) ||
+        (parseInt(this.month) === 12 && parseInt(Math.round(this.day)) > 31) ||
+        (parseInt(this.month) === 4 && parseInt(Math.round(this.day)) > 30) ||
+        (parseInt(this.month) === 6 && parseInt(Math.round(this.day)) > 30) ||
+        (parseInt(this.month) === 9 && parseInt(Math.round(this.day)) > 30) ||
+        (parseInt(this.month) === 11 && parseInt(Math.round(this.day)) > 30) ||
+        (parseInt(this.year) % 4 === 0 &&
+          parseInt(this.month) === 2 &&
+          parseInt(Math.round(this.day)) > 29) ||
+        (parseInt(this.year) % 4 !== 0 &&
+          parseInt(this.month) === 2 &&
+          parseInt(Math.round(this.day)) > 28) ||
+        parseInt(Math.round(this.day)) < 1 ||
+        isNaN(parseInt(this.day))
+      ) {
+        return 2
+      } else if (parseFloat(this.cost) < 0 || isNaN(parseFloat(this.cost))) {
+        return 3
       }
+      return 0
     }
-    return true
   }
 }
 
@@ -118,14 +142,14 @@ function registerExpense() {
   let expense = new Expense(
     year.value,
     month.value,
-    day.value,
+    parseInt(Math.round(day.value)),
     type.value,
     description.value,
-    cost.value
+    parseFloat(cost.value)
   )
 
   // registrando e trazendo a tela de sucesso ou erro de forma programática
-  if (expense.dataValidation()) {
+  if (expense.dataValidation() === 0) {
     // sucesso
 
     // registrando
@@ -142,21 +166,39 @@ function registerExpense() {
     $('#engraveRegister').modal('show')
 
     // zerando campos
-    year.value = ''
+    /*     year.value = ''
     month.value = ''
     day.value = ''
     type.value = ''
     description.value = ''
-    cost.value = ''
-  } else {
-    // erro
-
-    // pop up de aviso
+    cost.value = '' */
+  } else if (expense.dataValidation() === 1) {
+    // erro (campos em barnco)
     document.getElementById('modal-title').innerHTML = 'Error'
     document.getElementById('modal-title-div').className =
       'modal-header text-danger'
     document.getElementById('modal-content').innerHTML =
-      'Please, fill all the fields correctly'
+      'Please, fill all the fields'
+    document.getElementById('modal-btn').innerHTML = 'Go back and fix it'
+    document.getElementById('modal-btn').className = 'btn btn-danger'
+    $('#engraveRegister').modal('show')
+  } else if (expense.dataValidation() === 2) {
+    // erro (dia inválido)
+    document.getElementById('modal-title').innerHTML = 'Error'
+    document.getElementById('modal-title-div').className =
+      'modal-header text-danger'
+    document.getElementById('modal-content').innerHTML =
+      'Please, enter a valid day'
+    document.getElementById('modal-btn').innerHTML = 'Go back and fix it'
+    document.getElementById('modal-btn').className = 'btn btn-danger'
+    $('#engraveRegister').modal('show')
+  } else if (expense.dataValidation() === 3) {
+    // erro (dia inválido)
+    document.getElementById('modal-title').innerHTML = 'Error'
+    document.getElementById('modal-title-div').className =
+      'modal-header text-danger'
+    document.getElementById('modal-content').innerHTML =
+      'Please, enter a valid cost value'
     document.getElementById('modal-btn').innerHTML = 'Go back and fix it'
     document.getElementById('modal-btn').className = 'btn btn-danger'
     $('#engraveRegister').modal('show')
