@@ -1,27 +1,59 @@
-<h1 align="center">
-    <img alt="PB" title="PB" src="./logo.png"/> Personal Budget
-</h1>
+<div align="center">
 
-:moneybag: Using HTML, Bootstrap, Javascript, jQuery and a local storage, I (along with Web Developer's Course) created a system to register and store expenses, with date, type, description and cost information of each expense. :moneybag:
+<img src="./logo.png" alt="Personal Budget logo" />
 
-<h1 align="center">
-    <img alt="DB" title="DB" src="./assets/pic2.PNG" width="620px"/>
-</h1>
+# Personal Budget
 
-The system is coded to not allow invalid dates and cost values (such as characters on these fields), and also won't allow any empty field :lock::lock:. You can register as much expenses as you want, and it will be stored on your internal browser storage :package:. 
+**Expense tracker that runs entirely in the browser, with validation, filters and storage in `localStorage`.**
 
-<h1 align="center">
-    <img alt="DB" title="DB" src="./assets/pic3.PNG"/>
-</h1>
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?logo=bootstrap&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
 
-You can filter queries by any of the register information (day, month, year, type, description and cost), and you can delete the expense you want, with a safety alert to confirm that you really want to delete it :wastebasket:.
+**[See it live](https://giobroliatto.github.io/personal-budget/)**
 
-<h1 align="center">
-    <img alt="DB" title="DB" src="./assets/pic1.PNG"width="620px" />
-</h1>
+</div>
 
-Besides all that, this was the first system that I developed using object-oriented programming paradigm, learning and improving the knowledge I had. :computer::keyboard:
+**English** · [Português](README.pt-BR.md)
 
-#
+> [!NOTE]
+> Built in 2021 while following a full-stack web developer course. It was my first system written with object-oriented programming.
 
- #### <h3 align="center">You can check the system [here](https://giobroliatto.github.io/personal-budget/)</h3>
+---
+
+## About
+
+You record expenses with date, type, description and amount, then look them up later with filters. Everything is stored in the browser's own storage, so no server is needed.
+
+<div align="center">
+<img src="./assets/pic2.PNG" width="620" alt="New expense form" />
+</div>
+
+## Features
+
+- **New expense** with year, month, day, type, description and amount.
+- **Validation:** empty fields, invalid dates (including day limits per month and leap years) and non-numeric amounts are rejected.
+- **Query with filters** on any field (day, month, year, type, description and amount).
+- **Deletion** with a confirmation prompt.
+
+<div align="center">
+<img src="./assets/pic3.PNG" alt="Expense query" />
+<img src="./assets/pic1.PNG" width="620" alt="Validation feedback" />
+</div>
+
+## Technical highlights
+
+- **Object-oriented:** an `Expense` class with its own validation, and a `Db` class that wraps `localStorage` (record, list, search and remove), with an incrementing ID.
+- **Bootstrap** for layout and modals, with no build step.
+
+## Running locally
+
+No build step: clone the repository and open `index.html` in your browser.
+
+---
+
+## Author
+
+Made by **Giovani Broliatto**.
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-giobroliatto-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/giobroliatto/)
